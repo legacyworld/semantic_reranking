@@ -1,0 +1,6 @@
+certifi==2024.8.30
+elastic-transport==8.15.0
+elasticsearch==8.15.1
+python-dotenv==1.0.1
+tqdm==4.66.5
+urllib3==2.2.3
