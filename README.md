@@ -22,7 +22,7 @@ KIBANA_PORT = 5601
 3. Upload Cross Encoder model to Machine Learning node
 Japanese Cross Encoder model is used here. Change `--hub-model-id` accordingly.
 ```
-docker exec -it rerank-eland-1 \
+docker exec -it semantic_reranking-eland-1 \
 eland_import_hub_model \
 --url https://es01:9200 \
 -u elastic -p elastic \
@@ -33,7 +33,7 @@ eland_import_hub_model \
 ```
 4. Create Inference Endpoint
 ```
-docker exec -it rerank-python-1 curl --cacert /config/ca/ca.crt -u elastic:elastic -X PUT "https://es01:9200/_inference/rerank/my-rerank" -H 'Content-Type: application/json' -d'
+docker exec -it semantic_reranking-python-1 curl --cacert /config/ca/ca.crt -u elastic:elastic -X PUT "https://es01:9200/_inference/rerank/my-rerank" -H 'Content-Type: application/json' -d'
 {
   "service": "elasticsearch",
   "service_settings": {
@@ -47,9 +47,9 @@ docker exec -it rerank-python-1 curl --cacert /config/ca/ca.crt -u elastic:elast
 5. Ingest data
 This is Japanese language only.
 ```
-docker exec -it rerank-python-1 python /src/ingest.py --index_name=rerank --file=/src/data.json
+docker exec -it semantic_reranking-python-1 python /src/ingest.py --index_name=rerank --file=/src/data.json
 ```
 6. Search and Reranking
 ```
- docker exec -it rerank-python-1 python /src/rerank.py rerank 京都の観光名所を教えて
+ docker exec -it semantic_reranking-python-1 python /src/rerank.py rerank 京都の観光名所を教えて
 ```
