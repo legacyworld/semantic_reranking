@@ -22,13 +22,14 @@ KIBANA_PORT = 5601
 3. Upload Cross Encoder model to Machine Learning node
 Japanese Cross Encoder model is used here. Change `--hub-model-id` accordingly.
 ```
-docker exec -it semantic_reranking-eland-1 \
+docker exec -it semantic_reranking-python-1 \
 eland_import_hub_model \
 --url https://es01:9200 \
 -u elastic -p elastic \
 --hub-model-id hotchpotch/japanese-reranker-cross-encoder-xsmall-v1 \
 --task-type text_similarity \
 --ca-certs /config/ca/ca.crt \
+--max-model-input-length 512 \
 --start
 ```
 4. Create Inference Endpoint

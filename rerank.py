@@ -3,10 +3,7 @@ from dotenv import load_dotenv
 import os, sys
 load_dotenv()
 
-es_api_key = os.environ['ES_API_KEY']
 es = Elasticsearch("https://es01:9200",ca_certs="/config/ca/ca.crt",basic_auth=("elastic","elastic"))
-#es = Elasticsearch("https://es01:9200",ca_certs="/config/ca/ca.crt",api_key=es_api_key)
-print(es.info())
 
 search_index = sys.argv[1]
 query = sys.argv[2]
